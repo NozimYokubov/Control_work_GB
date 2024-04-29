@@ -29,52 +29,42 @@ void PrintArray(string[] array)
     Console.Write("]");
 }
 
-bool AreThereEnoughSymbolsInStr(string str, int test)
-{
-     if (str.Length < test + 1)
-    {
-        return true;
-    } 
-    return false;
-}
-
-int HowManyStrHas3SymbolsInArray(string[] array, int test)
+int CountStrings(string[] array, int maxLength)
 {
     int size = 0;
     for (int i = 0; i < array.Length; i++)
     {
-        if (AreThereEnoughSymbolsInStr(array[i], test))
+        if (array[i].Length <= maxLength)
         {
-            size += 1;
+            size ++;
         }
     }
     return size;
 }
 
 
-string[] CreateArrayStr(string[] array, int test)
+string[] CreateArrayStr(string[] array, int maxLength)
 {
-    int z = HowManyStrHas3SymbolsInArray(array, test);
+    int z = CountStrings(array, maxLength);
     string[] NewArray = new string[z];
     int j = 0;
     for (int i = 0; i < array.Length; i++)
     {
-        if (AreThereEnoughSymbolsInStr(array[i], test))
+        if (array[i].Length <= maxLength)
         {
-            NewArray[j] = array[i];
-            j += 1;
+            NewArray[j++] = array[i];
         }
     }
     return NewArray;
 }
 
 
-// string[] array = new string[] { "Hello", "2", "world", ":-)" };
+string[] array = new string[] { "Hello", "2", "world", ":-)" };
 // string[] array = new string[] { "1234", "1567", "-2" };
-string[] array = new string[] { "Russia", "Denmark", "Kazan" };
-int count = 3;
-// int i = HowManyStrHas3SymbolsInArray(array, count);
-string[] newArray = CreateArrayStr(array, count);
+// string[] array = new string[] { "Russia", "Denmark", "Kazan" };
+int mLength = 3;
+// int i = CountStrings(array, count);
+string[] newArray = CreateArrayStr(array, mLength);
 PrintArray(array);
 Console.WriteLine();
 PrintArray(newArray);
